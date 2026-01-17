@@ -11,9 +11,9 @@ import { AIChat } from "../ai-chat";
 import { FloatingControls } from "../floating-controls";
 import { Panels } from "../panels";
 import { Dialogs } from "./dialogs";
+import { FileDNDHelper } from "./dnd-helper";
 import { EmptyState } from "./empty-state";
 import { Events } from "./events";
-import { FileDNDHelper } from "./dnd-helper";
 
 export function AppRoot() {
   useScreenView("app", "Screen");

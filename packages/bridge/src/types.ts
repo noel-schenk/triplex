@@ -44,10 +44,10 @@ export interface MenuControl {
   label: string;
   options: (
     | {
-      group?: string;
-      id: string;
-      label: string;
-    }
+        group?: string;
+        id: string;
+        label: string;
+      }
     | { type: "separator" }
   )[];
   type: "menu";
@@ -163,15 +163,15 @@ export interface ClientSendEventData {
   keyup: KeyboardEventObject;
   ready: undefined;
   "set-extension-points":
-  | {
-    area: "elements";
-    controls: Actions;
-  }
-  | {
-    area: "scene";
-    controls: Controls;
-  }
-  | { area: "settings"; options: MenuControl["options"] };
+    | {
+        area: "elements";
+        controls: Actions;
+      }
+    | {
+        area: "scene";
+        controls: Controls;
+      }
+    | { area: "settings"; options: MenuControl["options"] };
   track: { actionId: string };
 }
 
@@ -214,15 +214,15 @@ export interface HostSendEventData {
     path: string;
   } | null;
   "extension-point-triggered":
-  | {
-    id: string;
-    scope: "scene";
-  }
-  | {
-    data: ExtensionPointElement;
-    id: string;
-    scope: "element";
-  };
+    | {
+        id: string;
+        scope: "scene";
+      }
+    | {
+        data: ExtensionPointElement;
+        id: string;
+        scope: "element";
+      };
   keydown: KeyboardEventObject;
   keyup: KeyboardEventObject;
   "request-blur-element": undefined;
@@ -241,20 +241,20 @@ export interface HostSendEventData {
     path: string;
   };
   "request-jump-to-element":
-  | {
-    astPath: string;
-    column: number;
-    line: number;
-    path: string;
-  }
-  | undefined;
+    | {
+        astPath: string;
+        column: number;
+        line: number;
+        path: string;
+      }
+    | undefined;
   "request-open-component":
-  | {
-    encodedProps: string;
-    exportName: string;
-    path: string;
-  }
-  | undefined;
+    | {
+        encodedProps: string;
+        exportName: string;
+        path: string;
+      }
+    | undefined;
   "request-refresh-scene": { hard: true } | undefined;
   "request-reset-prop": {
     astPath: string;

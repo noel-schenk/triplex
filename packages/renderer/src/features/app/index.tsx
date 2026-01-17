@@ -12,6 +12,7 @@ import {
   type Modules,
   type ProviderModule,
 } from "@triplex/bridge/client";
+import { useDND } from "@triplex/lib";
 import { LoadingLogo } from "@triplex/lib/loader";
 import {
   startTransition,
@@ -28,7 +29,6 @@ import { SceneLoader } from "../scene-loader";
 import { SwitchToComponentContext } from "./context";
 import { DebugAttributes } from "./debug";
 import { type Component } from "./types";
-import { useDND } from "@triplex/lib";
 
 export function App({
   files,
@@ -45,7 +45,11 @@ export function App({
     props: {},
   });
 
-  const { bindingsDND, isDragging } = useDND(send, component.exportName, component.path);
+  const { bindingsDND, isDragging } = useDND(
+    send,
+    component.exportName,
+    component.path,
+  );
 
   const switchToComponent = useCallback((component: Component) => {
     startTransition(() => {
@@ -123,7 +127,7 @@ export function App({
         >
           <div
             {...bindingsDND}
-            style={{ height: '100%', position: 'relative', width: '100%' }}
+            style={{ height: "100%", position: "relative", width: "100%" }}
           >
             {isDragging && (
               <div
@@ -143,9 +147,7 @@ export function App({
                   textAlign: "center",
                   zIndex: "99",
                 }}
-              >
-
-              </div>
+              ></div>
             )}
             <Suspense
               fallback={

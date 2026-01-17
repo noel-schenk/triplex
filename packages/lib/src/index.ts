@@ -17,6 +17,6 @@ export { draggableNumberInputContextMenuFix } from "./contextmenu";
 export { hash } from "./hash";
 export { equal } from "./equal";
 
-export { useDND } from './use-dnd';
+export { useDND } from "./use-dnd";
 
-export const noop = () => { };
+export const noop = () => {};

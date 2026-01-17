@@ -22,7 +22,10 @@ export function sendVSCE<TEventName extends keyof FromVSCodeEvent>(
   });
 }
 
-const callbacks: Map<keyof ToVSCodeEvent, Set<(data: unknown) => unknown>> = new Map();
+const callbacks: Map<
+  keyof ToVSCodeEvent,
+  Set<(data: unknown) => unknown>
+> = new Map();
 
 export async function execCallback<TEventName extends keyof ToVSCodeEvent>(
   eventName: TEventName,
