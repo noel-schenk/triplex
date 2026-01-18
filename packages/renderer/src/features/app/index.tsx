@@ -12,7 +12,6 @@ import {
   type Modules,
   type ProviderModule,
 } from "@triplex/bridge/client";
-import { useDND } from "@triplex/lib";
 import { LoadingLogo } from "@triplex/lib/loader";
 import {
   startTransition,
@@ -44,12 +43,6 @@ export function App({
     path: "",
     props: {},
   });
-
-  const { bindingsDND, isDragging } = useDND(
-    send,
-    component.exportName,
-    component.path,
-  );
 
   const switchToComponent = useCallback((component: Component) => {
     startTransition(() => {
@@ -125,30 +118,7 @@ export function App({
           }
           resetKeys={[component]}
         >
-          <div
-            {...bindingsDND}
-            style={{ height: "100%", position: "relative", width: "100%" }}
-          >
-            {isDragging && (
-              <div
-                style={{
-                  alignItems: "center",
-                  border: "4px dashed #569cd6",
-                  color: "#569cd6",
-                  display: "flex",
-                  flexDirection: "column",
-                  fontFamily: '"Segoe WPC", "Segoe UI", sans-serif',
-                  fontSize: "24px",
-                  fontWeight: "500",
-                  inset: "10px",
-                  justifyContent: "center",
-                  pointerEvents: "none",
-                  position: "absolute",
-                  textAlign: "center",
-                  zIndex: "99",
-                }}
-              ></div>
-            )}
+          <div style={{ height: "100%", position: "relative", width: "100%" }}>
             <Suspense
               fallback={
                 <LoadingLogo

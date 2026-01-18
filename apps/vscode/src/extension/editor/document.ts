@@ -209,21 +209,26 @@ export class TriplexDocument implements vscode.CustomDocument {
   }
 
   async insertComponent(data: {
-    activeScene: string | undefined;
-    componentPath: string;
-    exportName?: string;
-    scenePath: string;
+    exportName: string;
+    insertingExportName: string;
+    insertingPath: string;
+    path: string;
   }) {
     return this.undoableAction("Insert component", async () => {
       const result = await fetch(
         `http://localhost:${
           this._context.ports.server
-        }/scene/${encodeURIComponent(data.scenePath)}/add-component`,
+        }/scene/${encodeURIComponent(data.path)}/${data.exportName}/object`,
         {
           body: JSON.stringify({
-            activeScene: data.activeScene,
-            componentPath: data.componentPath,
-            exportName: data.exportName,
+            type: {
+              exportName: data.insertingExportName,
+              path: data.insertingPath,
+              props: {},
+              type: "custom",
+            },
+            // "target" property can be defined to insert at a specific location.
+            // we can add support for this later.
           }),
           headers: {
             "Content-Type": "application/json",
@@ -231,8 +236,10 @@ export class TriplexDocument implements vscode.CustomDocument {
           method: "POST",
         },
       );
+
       const response: Mutation = await result.json();
-      return { ...response, path: data.scenePath };
+
+      return { ...response, path: data.path };
     });
   }
 

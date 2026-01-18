@@ -188,7 +188,7 @@ export class TriplexEditorProvider
           await document.deleteElement(element);
         }),
         on(panel.webview, "component-insert", async (data) => {
-          return await document.insertComponent(data);
+          return document.insertComponent(data);
         }),
         on(panel.webview, "send-request", async ({ data, event, id }) => {
           const results = await execCallback(event, data);

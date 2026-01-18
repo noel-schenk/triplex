@@ -91,10 +91,10 @@ export interface ToVSCodeEvent extends ClientSendEventData {
         type: "add";
       };
   "component-insert": {
-    activeScene: string | undefined;
-    componentPath: string;
-    exportName?: string;
-    scenePath: string;
+    exportName: string;
+    insertingExportName: string;
+    insertingPath: string;
+    path: string;
   };
   "element-delete": {
     astPath: string;

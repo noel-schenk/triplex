@@ -103,12 +103,6 @@ export interface ClientSendEventData {
     channel: string;
     data: string | number | object;
   };
-  "component-insert": {
-    activeScene: string | undefined;
-    componentPath: string;
-    exportName?: string;
-    scenePath: string;
-  };
   "component-opened": {
     encodedProps: string;
     entered?: boolean;
