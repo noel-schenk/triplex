@@ -15,7 +15,7 @@ import {
 import { createWSEvents } from "@triplex/websocks-client/events";
 import * as vscode from "vscode";
 import { logger } from "../../util/log/vscode";
-import { execCallback, on, sendVSCE } from "../util/bridge";
+import { on, sendVSCE } from "../util/bridge";
 import { TriplexDocument } from "./document";
 import { initializeWebviewPanel } from "./panel";
 import { type TriplexProjectResolver } from "./project";
@@ -189,13 +189,6 @@ export class TriplexEditorProvider
         }),
         on(panel.webview, "component-insert", async (data) => {
           return document.insertComponent(data);
-        }),
-        on(panel.webview, "send-request", async ({ data, event, id }) => {
-          const results = await execCallback(event, data);
-          sendVSCE(panel.webview, "request-response", {
-            id,
-            result: results.pop(),
-          });
         }),
         on(panel.webview, "notification", async (data) => {
           switch (data.type) {
